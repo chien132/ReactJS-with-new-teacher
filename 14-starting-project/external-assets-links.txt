@@ -1,0 +1,9 @@
+
+Your-JavaScript-code-is-exposed-to-your-visitors-More-Details-
+https://academind.com/learn/javascript/hide-javascript-code/
+
+More-on-APIs-REST-APIs-GraphQL-APIs-
+https://academind.com/learn/web-dev/rest-vs-graphql/
+
+More-on-Http-Status-Codes
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
