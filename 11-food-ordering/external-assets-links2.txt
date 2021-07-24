@@ -1,0 +1,12 @@
+
+Checkout.module.css-Code
+https://github.com/academind/react-complete-guide-code/blob/17-practice-food-order-http-forms/extra-files/Checkout.module.css
+
+Modal.module.css-Code
+https://github.com/academind/react-complete-guide-code/blob/17-practice-food-order-http-forms/extra-files/Modal.module.css
+
+Checkout.js-Code
+https://github.com/academind/react-complete-guide-code/blob/17-practice-food-order-http-forms/extra-files/Checkout.js
+
+Your-frontend-JavaScript-code-can-be-hacked
+https://academind.com/learn/javascript/hide-javascript-code/

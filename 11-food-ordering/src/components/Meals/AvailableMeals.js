@@ -1,37 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./AvailableMeals.module.css";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
-
-const DUMMY_MEALS = [
-  {
-    id: "m1",
-    name: "Sushi",
-    description: "Finest fish and veggies",
-    price: 22.99,
-  },
-  {
-    id: "m2",
-    name: "Schnitzel",
-    description: "A german specialty!",
-    price: 16.5,
-  },
-  {
-    id: "m3",
-    name: "Barbecue Burger",
-    description: "American, raw, meaty",
-    price: 12.99,
-  },
-  {
-    id: "m4",
-    name: "Green Bowl",
-    description: "Healthy...and green...",
-    price: 18.99,
-  },
-];
+import useHttp from "../../hooks/use-http";
 
 export default function AvailableMeals() {
-  const mealsList = DUMMY_MEALS.map((meal) => (
+  const [meals, setMeals] = useState([]);
+  const apiUrl =
+    "https://react-http-a01bf-default-rtdb.firebaseio.com/meals.json";
+
+  const { isLoading, error, sendRequest: fetchMeals } = useHttp();
+
+  useEffect(() => {
+    fetchMeals(
+      {
+        url: apiUrl,
+        // method: "POST",
+        // body: { title: movie.title },
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+      },
+      setMeals
+    );
+  }, [fetchMeals]);
+
+  const mealsList = meals.map((meal) => (
     <MealItem
       key={meal.id}
       id={meal.id}
@@ -40,11 +34,25 @@ export default function AvailableMeals() {
       price={meal.price}
     />
   ));
-  return (
-    <section className={classes.meals}>
-      <Card>
-        <ul>{mealsList}</ul>
-      </Card>
-    </section>
-  );
+
+  let content = <p className={classes.mealsloading}>Found no meals.</p>;
+  if (!isLoading) {
+    if (meals.length > 0) {
+      content = (
+        <Card>
+          <ul>{mealsList}</ul>
+        </Card>
+      );
+    } else if (error) {
+      content = <p className={classes.mealsloading_failed}>{error}</p>;
+    }
+  } else {
+    content = (
+      <section>
+        <p className={classes.mealsloading}>Loading...</p>
+      </section>
+    );
+  }
+
+  return <section className={classes.meals}>{content}</section>;
 }
